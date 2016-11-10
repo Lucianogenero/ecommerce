@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Clientes:</strong>
+  <%= @destroy.Clientes %>
+</p>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @destroy.nome %>
+</p>
+
+<p>
+  <strong>Cep:</strong>
+  <%= @destroy.cep %>
+</p>
+
+<%= link_to 'Edit', edit_destroy_path(@destroy) %> |
+<%= link_to 'Back', destroys_path %>

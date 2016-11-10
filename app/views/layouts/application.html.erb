@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">  
+        <title>Ecommerce</title>
+    <meta name="generator" content="Bootply" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">       
+   <%= stylesheet_link_tag 'application', media: 'all',
+                                           'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application','data-turbolinks-track' => true %>
+    
+    <%= csrf_meta_tags %>
+   
+        <script src="/assets/javascripts/javascript.js" type="text/javascript"></script>
+    </head>
+    <body>
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://localhost:3000/">Ecommerce</a>
+
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <ul>
+                            <li class="dropdown"><a href="#" class="dropbtn">Telefonia</a>
+                                <div class="dropdown-content">
+                                    <a href="#">Smartphone</a>
+                                    <a href="#">Telefone Fixo</a>
+                                    <a href="#">Acessorios</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li class="dropdown"><a href="#" class="dropbtn">Informatica</a>
+                                <div class="dropdown-content">
+                                    <a href="#">Notebook</a>
+                                    <a href="#">Computador</a>
+                                    <a href="#">Desktop</a>
+                                    <a href="#">Monitores</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                         <ul>
+                            <li class="dropdown"><a href="#" class="dropbtn">Eletrodomesticos</a>
+                                <div class="dropdown-content">
+                                    <a href="#">Link 1</a>
+                                    <a href="#">Link 2</a>
+                                    <a href="#">Link 3</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li class="dropdown"><a href="#" class="dropbtn">Tv & Video</a>
+                                <div class="dropdown-content">
+                                    <a href="#">SmartTV</a>
+                                    <a href="#">Link 2</a>
+                                    <a href="#">Link 3</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                         <ul>
+                            <li class="dropdown"><a href="#" class="dropbtn">Portateis</a>
+                                <div class="dropdown-content">
+                                    <a href="#">Link 1</a>
+                                    <a href="#">Link 2</a>
+                                    <a href="#">Link 3</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                   
+                        <li> 
+                            <%= form_tag(application_path, :method => :get) do %>
+                                <%= text_field_tag 'search', nil, placeholder: 'Buscar...' %> 
+                                <%= submit_tag "Buscar"%>
+                            <% end %>
+                        </li>
+                        
+                        <li> 
+                        <% if user_signed_in? %>
+                          <li>  <%= link_to 'Edit profile', edit_user_registration_path %> </li>
+                          <li>  <%= link_to "Logout", destroy_user_session_path, method: :delete %> </li>
+                        <% else %> <li></li>
+                            <li><%= link_to "Login", new_user_session_path %> </li> <!--:class => 'navbar-link'--> 
+                        <% end %> 
+                        </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+
+    </nav>
+
+
+    <!-- /.container -->
+       
+         <div class="col-md-3">
+                <p class="lead">Categorias</p>
+                    <div class="list-group">
+                        <a href="/categoriaprodutos/1" class="list-group-item">AUDIO</a>
+                        <a href="/categoriaprodutos/2" class="list-group-item">VIDEO</a>
+                        <a href="/categoriaprodutos/3" class="list-group-item">INFORMATICA</a>
+                    </div>
+            </div>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+<%= yield  %>
+
+ 
+    <!-- Page Content -->
+
+           <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Luciano Genero</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

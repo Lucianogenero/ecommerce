@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">	
+		<title>Ecommerce</title>
+	<meta name="generator" content="Bootply" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">		
+   <%= stylesheet_link_tag 'application', media: 'all',
+                                           'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application','data-turbolinks-track' => true %> 
+    
+    <%= csrf_meta_tags %>
+   
+	</head>
+	<body>
+<!-- Navigation -->
+   
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                    
+            </div>
+
+            <div class="col-md-9">
+                <div class="row carousel-holder">
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image"> <%=link_to(image_tag("promocao.jpg", :size => "800x300"),"http://localhost:3000/produtos/1") %>
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image"> <%=link_to(image_tag("blackfriday.png", :size => "800x300"),"http://localhost:3000/produtos/2") %>
+                                 </div>
+                                <div class="item">
+                                    <img class="slide-image"> <%=link_to(image_tag("blackfriday.png", :size => "800x300"),"http://localhost:3000/produtos/2") %>
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <% @Produto.each do |produto| %>
+                <% preco = Estoque.estoque_scope(produto.id).first.preco %>               
+                    <div class="row">
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                            <div class="thumbnail">
+                                
+                                <a href="#" onclick="window.open('http://localhost:3000/produtos/='+ image_tag(produto.id)"><img src = <%= produto.foto1 %> alt=""> </a>
+                                <%= image_tag(image_url(produto.id)) %>
+                                <!--img src = <%= produto.foto1 %> alt=""-->
+                                <!--link_to "http://localhost:3000/produtos/#{produto.id}" -->
+                                <div class="caption">
+                                    <h4 class="pull-right"><%= number_to_currency(preco, :unit => 'R$ ')%></h4>
+                                    
+                                    <h4><%= link_to ''+produto.nome, produto %>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
+
+    <div class="container">
+        <hr>
+
+        <!-- Footer -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+<%= yield  %>
+
+
+
+</body>
+
+</html>

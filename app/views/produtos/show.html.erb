@@ -1,0 +1,85 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subcategoriaproduto:</strong>
+  <h1><%= @produto.subcategoriaproduto.nome %></h1>
+  <% preco = Estoque.estoque_scope(@produto.id).first.preco %>
+</p>
+
+		<div class="container-fluid">
+		    <div class="content-wrapper">	
+				<div class="item-container">	
+					<div class="container">	
+						<div class="imagens-produtos">
+								<center>
+									<div class="product col-md-3 service-image-left">
+		      						<%= image_tag @produto.foto1.url(:medium) %>
+		      						</div>
+								</center>
+								<div>
+									<a class="tag_produto">
+										<%= image_tag @produto.foto2.url(:thumb) %> 
+									</a>
+									<a class="tag_produto">
+										<%= image_tag @produto.foto3.url(:thumb) %>
+									</a>
+									<a class="tag_produto">
+										<%= image_tag @produto.foto4.url(:thumb) %>
+									</a>
+								</div>
+							
+						</div>
+							
+						<div class="col-md-7">
+							<div class="product-title"><p><h2><%= @produto.nome %></div>
+							<div class="product-desc"><%= @produto.descricao%></div>
+							<div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
+							<hr>
+							<div class="produto-preco"><%= number_to_currency(preco, :unit => 'R$ ')%></div>
+									<%if (Estoque.estoque_scope(@produto.id).first.saldo).to_f == 0 %>
+										<div class="produto-estoque"> Produto Indisponivel </div>
+									 <% else %> 
+										<div class="produto-estoque"> Produto Disponivel </div>	
+									<% end %>
+							
+							<hr>
+							<div class="btn-group cart"><!--button type="button" class="btn btn-success"> Ad p/ Carrinho</button-->
+									<a href="/carrinhos/<%= @produto.id %>"> adicionar </a> 
+									<%= button_to "Adicionar Carrinho!", "/carrinhos/", :id => @produto.id, method: 'get'%>
+									<!--%= link_to "Adicionar Carrinho!", '/carrinhos/add', method: 'get'%-->
+							</div>
+							<div class="btn-group wishlist">
+								<button type="button" class="btn btn-danger">
+									Adicionar lista de desejos
+								</button>
+							</div>
+						</div>
+					</div> 
+				</div>
+				<div class="">		
+					
+						<div class="">
+								<div class="">								 
+									<div class="detalhamento">
+											<%= @produto.detalhamento %>
+									</div>
+												  
+								</div>
+							<div class="tab-pane fade" id="service-two">
+								
+								<section class="container">
+										
+								</section>
+								
+							</div>
+							<div class="tab-pane fade" id="service-three">
+														
+							</div>
+							  <script src="\assets\javascript\javascript.js"></script>
+						</div>
+						<hr>
+					</div>
+				</div>
+			</div>
+		</div>
+	</end>

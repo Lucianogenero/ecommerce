@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Subcategoriaprodutos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Categoriaproduto</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @subcategoriaprodutos.each do |subcategoriaproduto| %>
+      <tr>
+        <td><%= subcategoriaproduto.nome %></td>
+        <td><%= subcategoriaproduto.categoriaproduto.nome %></td>
+        <td><%= link_to 'Show', subcategoriaproduto %></td>
+        <td><%= link_to 'Edit', edit_subcategoriaproduto_path(subcategoriaproduto) %></td>
+        <td><%= link_to 'Destroy', subcategoriaproduto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Subcategoriaproduto', new_subcategoriaproduto_path %>

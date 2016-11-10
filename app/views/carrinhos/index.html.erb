@@ -1,0 +1,39 @@
+<h1>carrinho</h1>
+<% total = 0 %>
+
+	<% if  @carrinho.empty? %>
+		<p>Seu carrinho esta vazio!</p>
+	<% else %>	
+		<ul>
+			<% @carrinho.each do |id, quantidade| %>
+				<% produto = Produto.find_by_id(id) %>
+				<% preco = Estoque.estoque_scope(produto.id).first.preco %>
+				<li>
+					<%= link_to produto.nome, produto %><br>
+					<%= produto.descricao %><br>
+					Quantidade: <%= quantidade %><br>
+					<%= number_to_currency(preco, :unit => 'R$') %>
+				</li>
+
+					<% total += quantidade * preco %>
+					<hr>
+			<% end %>
+			 				
+			<select id="calc_correios_tipo" name="calc_correios[tipo]">
+				<option value="100">Prazo até 7 dias R$ 100,00 </option>
+				<option value="40">Prazo até 15 dias R$ 40,00</option>
+			</select>
+				<input class="btn btn-info" id="calc_correios_submit" name="commit" type="submit" value="calcular &raquo;">
+				<br>
+			<b>Valor do frete:</b><br>
+
+			<!--% total += calc_correios[tipo] %-->
+			<p>Total: R$ <%= number_to_currency(total, :unit => 'R$') %></p>
+
+
+			 
+
+			<%= link_to 'limpar carrinho', carrinhos_clear_path %>
+		</ul>
+	<% end %>
+<%= button_to 'Continuar comprando', "/", method: 'get'	%>

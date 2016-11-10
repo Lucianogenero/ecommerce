@@ -1,0 +1,46 @@
+ <%= form_for (produto), html: {multipart: true} do |f| %>   
+  <% if produto.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(produto.errors.count, "error") %> prohibited this produto from being saved:</h2>
+      
+      <ul>
+      <% produto.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= f.file_field :foto1 %>
+  <%= f.file_field :foto2 %> 
+  <%= f.file_field :foto3 %> 
+  <%= f.file_field :foto4 %> 
+
+  <div class="field">
+    <%= f.label :nome %>
+    <%= f.text_field :nome %>
+  </div>
+
+  <div class="field">
+    <%= f.label :subcategoriaproduto_id %>
+    <%= f.select("subcategoriaproduto_id", Subcategoriaproduto.all.collect {|p| [ p.nome, p.id ] }, include_blank: true, selected: @produto.subcategoriaproduto_id ) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :descricao %>
+    <%= f.text_field :descricao %>
+  </div>
+
+  <div class="field" size="10x500">
+    <%= f.label :detalhamento %>
+    <%= f.text_area :detalhamento %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+  

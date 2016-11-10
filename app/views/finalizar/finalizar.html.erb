@@ -1,0 +1,6 @@
+<% for item in session[:carrinho] %> 
+		<% @finalizar_compra = @produtos[item["produto_id"]] %>
+		<li><%= @produto.nome %> - <%= item["quantidade"] %></li>
+
+		<%= button_to "Finalizar_compra", adicionar_carrinho_path , :id => @produto.id %>
+	<% end %> 
